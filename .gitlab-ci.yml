@@ -1,0 +1,22 @@
+stages:          # List of stages for jobs, and their order of execution
+  - test
+
+unit-test-job:   # This job runs in the test stage.
+  stage: test
+<<<<<<< HEAD
+  image: 
+  name: postman/newman_alpine33    # It only starts when the job in the build stage completes successfully.
+=======
+  image:
+   name: postman/newman    # It only starts when the job in the build stage completes successfully.
+>>>>>>> d5fb9686e5ccacfb70792292895bba70bbfdb08d
+  script:
+    - newman
+    - npm install -g newman-report-hrmlextra
+    - newman run test01.json -e get01.json -reporters cli,-r htmlextra --reporter-htmlextra-export Report.htm
+  artifacts:
+
+    when: always
+    paths:
+      - teste/ci 
+      - Report.html
