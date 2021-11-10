@@ -18,3 +18,7 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+    - name: postaman/newman
+       newman
+       npm install -g newman-report-hrmlextra
+       newman run tes01.json -e get01.json --reporters cli,-r htmlextra --reporter-htmlextra-export Report.html 
